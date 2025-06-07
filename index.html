@@ -12,15 +12,29 @@
       box-sizing: border-box;
     }
 
-    body {
-      background: url('https://abifysifkiyu.github.io/terrify.lol/public/666772cd-c537-4c45-bd7e-9f520387067b.mp4') no-repeat center center fixed;
-      background-size: cover;
+    body, html {
+      height: 100%;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .card-container {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
     }
 
     .card {
@@ -63,14 +77,25 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://YOUR_GITHUB_USERNAME.github.io/REPO_NAME/public/pfp.png" alt="Profile Picture">
-    <div class="name">TopResells</div>
-    <div class="discord">discord: @topresells</div>
+
+  <!-- Background Video -->
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="https://abifysifkiyu.github.io/terrify.lol/public/666772cd-c537-4c45-bd7e-9f520387067b.mp4" type="video/mp4">
+  </video>
+
+  <!-- Profile Card -->
+  <div class="card-container">
+    <div class="card">
+      <img src="https://abifysifkiyu.github.io/terrify.lol/public/6b67569d74c79a89c8eea8193c82df33.gif" alt="Profile Picture">
+      <div class="name">TopResells</div>
+      <div class="discord">discord: @topresells</div>
+    </div>
   </div>
 
+  <!-- Background Music -->
   <audio autoplay loop>
     <source src="https://abifysifkiyu.github.io/terrify.lol/public/5e3ea261-f343-4b97-b3d9-dcc2c8c8b750.mp3" type="audio/mpeg">
   </audio>
+
 </body>
 </html>
