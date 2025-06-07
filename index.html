@@ -16,6 +16,7 @@
       overflow: hidden;
       font-family: 'Arial', sans-serif;
       color: white;
+      background: black;
     }
 
     body.blur {
@@ -39,7 +40,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
@@ -47,8 +48,9 @@
       font-size: 2rem;
       font-weight: bold;
       color: white;
-      z-index: 10;
+      z-index: 999;
       cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .card {
@@ -63,6 +65,12 @@
       text-align: center;
       backdrop-filter: blur(5px);
       z-index: 1;
+      opacity: 0;
+      transition: 0.5s ease;
+    }
+
+    .card.show {
+      opacity: 1;
     }
 
     .card img {
@@ -88,7 +96,7 @@
 <body class="blur">
 
   <!-- Video background -->
-  <video autoplay muted loop id="background">
+  <video autoplay muted loop id="background" playsinline>
     <source src="https://abifysifkiyu.github.io/terrify.lol/public/666772cd-c537-4c45-bd7e-9f520387067b.mp4" type="video/mp4">
   </video>
 
@@ -109,11 +117,21 @@
 
   <script>
     function enterSite() {
+      // Hide overlay
       document.getElementById('overlay').style.display = 'none';
+
+      // Show content
       document.body.classList.remove('blur');
+      document.getElementById('main-card').classList.add('show');
+
+      // Play music
       const music = document.getElementById('bg-music');
       music.volume = 0.5;
-      music.play();
+
+      // Try to play (some browsers need user gesture)
+      music.play().catch((err) => {
+        console.warn('Audio play failed:', err);
+      });
     }
   </script>
 </body>
