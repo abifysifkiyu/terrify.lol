@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Profiles -- terrify.lol</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=array@400&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Array', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #a789d9;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 0 12px #a789d9;
+    }
+
+    .profile-name {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #a789d9;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Staff Profiles</h1>
+
+  <div class="profile-grid">
+    <a href="https://terrify.lol/boobies" class="profile-card">
+      <div class="profile-name">lv | owner</div>
+    </a>
+      <div class="profile-grid">
+    <a href="https://terrify.lol/emperor" class="profile-card">
+      <div class="profile-name">emperor | administrator</div>
+    </a>
+  </div>
+</body>
+</html>
