@@ -42,8 +42,14 @@
       color: #cccccc;
     }
 
-    a.button {
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
       margin-top: 28px;
+    }
+
+    a.button {
       padding: 12px 28px;
       border: 1px solid #a789d9;
       color: #a789d9;
@@ -69,6 +75,11 @@
 <body>
   <h1>terrify.lol</h1>
   <p>a little too real for comfort.</p>
-  <a class="button" href="https://discord.gg/slang">join us</a>
+
+  <div class="buttons">
+    <a class="button" href="https://discord.gg/slang">join us</a>
+    <a class="button" href="https://terrify.lol/staff">staff profiles</a>
+    <a class="button" href="https://terrify.lol/privacy">privacy policy</a>
+  </div>
 </body>
 </html>
