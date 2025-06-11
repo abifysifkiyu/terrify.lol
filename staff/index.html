@@ -4,32 +4,163 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Staff Profiles -- terrify.lol</title>
-  <link href="https://api.fontshare.com/v2/css?f[]=array@400&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#000000" />
+  <link href="https://api.fontshare.com/v2/css?f[]=array@400,700&display=swap" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Array', sans-serif;
       margin: 0;
-      padding: 2rem;
+      padding: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #0a0a0d 0%, #000000 100%);
+      color: #ffffff;
+      font-family: 'Array', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      animation: fadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: #a789d9;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp 8s linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 2px; height: 2px; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 3px; height: 3px; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 2px; height: 2px; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 6s; width: 1px; height: 1px; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 1s; width: 2px; height: 2px; }
+    .particle:nth-child(6) { left: 60%; animation-delay: 3s; width: 3px; height: 3px; }
+    .particle:nth-child(7) { left: 70%; animation-delay: 5s; width: 2px; height: 2px; }
+    .particle:nth-child(8) { left: 80%; animation-delay: 7s; width: 1px; height: 1px; }
+    .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; width: 2px; height: 2px; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.95) translateY(20px);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      animation: slideInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+    }
+
+    @keyframes slideInUp {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
       color: #a789d9;
+      text-shadow: 
+        0 0 10px rgba(167, 137, 217, 0.5),
+        0 0 20px rgba(167, 137, 217, 0.3),
+        0 0 40px rgba(167, 137, 217, 0.1);
+      margin: 0;
+      letter-spacing: -2px;
+      position: relative;
+      animation: glow 3s ease-in-out infinite alternate;
     }
 
-    .profile-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 1000px;
+    @keyframes glow {
+      0% {
+        text-shadow: 
+          0 0 10px rgba(167, 137, 217, 0.5),
+          0 0 20px rgba(167, 137, 217, 0.3),
+          0 0 40px rgba(167, 137, 217, 0.1);
+      }
+      100% {
+        text-shadow: 
+          0 0 15px rgba(167, 137, 217, 0.8),
+          0 0 30px rgba(167, 137, 217, 0.5),
+          0 0 60px rgba(167, 137, 217, 0.2);
+      }
     }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+      opacity: 0;
+      animation: fadeInButtons 1s ease 1.2s both;
+    }
+
+    @keyframes fadeInButtons {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
 
     .profile-card {
       background: rgba(255, 255, 255, 0.05);
@@ -43,15 +174,31 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .profile-grid {
+      display: grid;
+      padding: 0.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
     .profile-card:hover {
       transform: translateY(-6px) scale(1.03);
       box-shadow: 0 0 12px #a789d9;
     }
 
     .profile-name {
+      text-align: center;
       font-size: 1.3rem;
       font-weight: 500;
       color: #a789d9;
+    }
+    .profile-staff {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #723ec5;
     }
 
     a {
@@ -64,16 +211,91 @@
 
   <div class="profile-grid">
     <a href="https://terrify.lol/boobies" class="profile-card">
-      <div class="profile-name">lv | owner</div>
+      <div class="profile-name">lv</div>
+      <div class="profile-staff">ceo</div>
     </a>
-      <div class="profile-grid">
     <a href="https://terrify.lol/emperor" class="profile-card">
-      <div class="profile-name">emperor | administrator</div>
+      <div class="profile-name">emperor</div>
+      <div class="profile-staff">administrator</div>
     </a>
-      <div class="profile-grid">
     <a href="https://terrify.lol/valory" class="profile-card">
-      <div class="profile-name">valory | moderator</div>
+      <div class="profile-name">valory</div>
+      <div class="profile-staff">moderator</div>
+    </a>
+
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">null</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
+    </a>
+    <a href="/" class="profile-card">
+      <div class="profile-name">staff</div>
+      <div class="profile-staff">staff</div>
     </a>
   </div>
+  
 </body>
 </html>
