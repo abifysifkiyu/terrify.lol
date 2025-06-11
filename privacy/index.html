@@ -5,87 +5,349 @@
   <title>Privacy Policy — terrify.lol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000000" />
-  <link href="https://api.fontshare.com/v2/css?f[]=array@400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=array@400,700&display=swap" rel="stylesheet" />
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: #000;
-      color: #fff;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at center, #0a0a0d 0%, #000000 100%);
+      color: #ffffff;
       font-family: 'Array', sans-serif;
       line-height: 1.6;
       padding: 60px 20px;
-      animation: fadeIn 0.4s ease forwards;
+      position: relative;
+      overflow-x: hidden;
+      animation: fadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background: #a789d9;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp 8s linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 2px; height: 2px; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 3px; height: 3px; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 2px; height: 2px; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 6s; width: 1px; height: 1px; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 1s; width: 2px; height: 2px; }
+    .particle:nth-child(6) { left: 60%; animation-delay: 3s; width: 3px; height: 3px; }
+    .particle:nth-child(7) { left: 70%; animation-delay: 5s; width: 2px; height: 2px; }
+    .particle:nth-child(8) { left: 80%; animation-delay: 7s; width: 1px; height: 1px; }
+    .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; width: 2px; height: 2px; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
     }
 
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { 
+        opacity: 0; 
+        transform: scale(0.95) translateY(20px);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(167, 137, 217, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167, 137, 217, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      animation: slideInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+    }
+
+    @keyframes slideInUp {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     h1 {
       text-align: center;
-      font-size: 48px;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
       color: #a789d9;
-      text-shadow: 1px 1px 4px #a789d9;
-      margin-bottom: 30px;
+      text-shadow: 
+        0 0 10px rgba(167, 137, 217, 0.5),
+        0 0 20px rgba(167, 137, 217, 0.3),
+        0 0 40px rgba(167, 137, 217, 0.1);
+      margin-bottom: 40px;
+      letter-spacing: -1px;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 
+          0 0 10px rgba(167, 137, 217, 0.5),
+          0 0 20px rgba(167, 137, 217, 0.3),
+          0 0 40px rgba(167, 137, 217, 0.1);
+      }
+      100% {
+        text-shadow: 
+          0 0 15px rgba(167, 137, 217, 0.8),
+          0 0 30px rgba(167, 137, 217, 0.5),
+          0 0 60px rgba(167, 137, 217, 0.2);
+      }
     }
 
     .content {
       max-width: 800px;
       margin: 0 auto;
       font-size: 16px;
-      color: #ccc;
+      color: #cccccc;
+      background: 
+        linear-gradient(135deg, rgba(167, 137, 217, 0.02), rgba(0, 0, 0, 0.1)),
+        rgba(10, 10, 13, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(167, 137, 217, 0.1);
+      border-radius: 12px;
+      padding: 40px;
+      opacity: 0;
+      animation: fadeInContent 1s ease 0.8s both;
+    }
+
+    @keyframes fadeInContent {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h2 {
       color: #a789d9;
       margin-top: 40px;
-      font-size: 22px;
+      margin-bottom: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 5px rgba(167, 137, 217, 0.3);
+    }
+
+    h2:first-of-type {
+      margin-top: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    strong {
+      color: #ffffff;
     }
 
     a {
       color: #a789d9;
-      text-decoration: underline;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(167, 137, 217, 0.3);
+      transition: all 0.3s ease;
+      padding-bottom: 1px;
     }
 
     a:hover {
-      color: #fff;
+      color: #ffffff;
+      border-bottom-color: rgba(255, 255, 255, 0.5);
+      text-shadow: 0 0 8px rgba(167, 137, 217, 0.4);
     }
 
     .back-link {
-      display: block;
-      margin-top: 40px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      opacity: 0;
+      animation: fadeInBack 1s ease 1.2s both;
+    }
+
+    @keyframes fadeInBack {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .back-link a {
+      padding: 16px 36px;
+      border: 1px solid rgba(167, 137, 217, 0.6);
+      color: #a789d9;
+      text-decoration: none;
+      border-radius: 8px;
+      background: 
+        linear-gradient(135deg, rgba(167, 137, 217, 0.05), rgba(0, 0, 0, 0.2)),
+        rgba(10, 10, 13, 0.4);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(167, 137, 217, 0.6);
+    }
+
+    .back-link a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(167, 137, 217, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .back-link a:hover::before {
+      left: 100%;
+    }
+
+    .back-link a:hover {
+      background: 
+        linear-gradient(135deg, rgba(167, 137, 217, 0.1), rgba(0, 0, 0, 0.3)),
+        rgba(10, 10, 13, 0.6);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.8);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 25px rgba(167, 137, 217, 0.2),
+        0 0 0 1px rgba(167, 137, 217, 0.1);
+      text-shadow: none;
     }
 
     ::selection {
-      background: #a789d9;
+      background: rgba(167, 137, 217, 0.8);
       color: #000;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 40px 15px;
+      }
+      
+      .content {
+        padding: 30px 25px;
+      }
+      
+      h1 {
+        margin-bottom: 30px;
+      }
+      
+      h2 {
+        font-size: 22px;
+        margin-top: 30px;
+      }
+      
+      .back-link {
+        margin-top: 40px;
+      }
+      
+      .back-link a {
+        padding: 14px 28px;
+        font-size: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <div class="content">
-    <p><strong>Effective Date:</strong> Jun 7, 2025</p>
+  <div class="grid-overlay"></div>
+  
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 
-    <h2>1. No Data Collected</h2>
-    <p>We don’t collect any personal data. No cookies, no analytics, no ads. Your visit to this site is your business, not ours.</p>
+  <div class="content-wrapper">
+    <h1>Privacy Policy</h1>
+    <div class="content">
+      <p><strong>Effective Date:</strong> Jun 7, 2025</p>
 
-    <h2>2. No Third-Party Trackers</h2>
-    <p>We don’t embed third-party trackers, pixels, or any external analytics tools. Your privacy is fully respected here.</p>
+      <h2>1. No Data Collected</h2>
+      <p>We don't collect any personal data. No cookies, no analytics, no ads. Your visit to this site is your business, not ours.</p>
 
-    <h2>3. External Links</h2>
-    <p>We may link to other sites. If you leave our site via an external link, their privacy practices apply — not ours.</p>
+      <h2>2. No Third-Party Trackers</h2>
+      <p>We don't embed third-party trackers, pixels, or any external analytics tools. Your privacy is fully respected here.</p>
 
-    <h2>4. Changes</h2>
-    <p>If we ever change this policy (not likely), we’ll update this page with the new information. No tricks.</p>
+      <h2>3. External Links</h2>
+      <p>We may link to other sites. If you leave our site via an external link, their privacy practices apply — not ours.</p>
 
-    <h2>5. Contact</h2>
-    <p>If you have questions, concerns, please contact: <a href="mailto:lv@fbi.one">lv@fbi.one</a></p>
+      <h2>4. Changes</h2>
+      <p>If we ever change this policy (not likely), we'll update this page with the new information. No tricks.</p>
+
+      <h2>5. Contact</h2>
+      <p>If you have questions, concerns, please contact: <a href="mailto:lv@fbi.one">lv@fbi.one</a></p>
+    </div>
 
     <div class="back-link">
       <a href="https://terrify.lol/">← Back to Home</a>
